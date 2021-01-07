@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import Formulaire from './components/formulaire';
 import reportWebVitals from './reportWebVitals';
+import Form from './components/form';
+
+///// import bootstrap (>npm install --save bootstrap)
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Formulaire></Formulaire>
+    <Form></Form>
   </React.StrictMode>,
   document.getElementById('root')
 );
