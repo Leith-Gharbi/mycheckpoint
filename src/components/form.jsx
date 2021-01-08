@@ -3,46 +3,55 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: 'leith',
-      lastName: 'gharbi',
-      email: 'leitgharbi@yahoo.fr',
-      company: 'emaa',
-      webSite: 'www.facebook.com',
-      userName: 'hello',
-      password: '',
-      timeZone:'GMT-06:00',
+      firstName: '',
+      lastName: '',
+      email: '',
+      company: '',
+      webSite: '',
+      userName: '',
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+
   }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
+  handleChange = (event) => {
     this.setState({
-      [name]: value,
+      [event.target.id]: event.target.value,
     });
-  }
-  handleSubmit(event) {
-    alert('Votre parfum favori est : ' + this.state.firstName);
+  };
+  handleCancel= (event) => {
+    this.setState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        company: '',
+        webSite: '',
+      });
+  };
+
+handleSubmit(event) {
+    alert('HELLO  ' + this.state.firstName +' '+ this.state.lastName +'\n'+"your email is :"+ this.state.email +'\n'+" you work in : " +this.state.company +'\n' +"your website is :"+ this.state.webSite);
     event.preventDefault();
   }
   render() {
     return (
       <div className="Container mx-auto" style={{ width: '70%' }}>
-        <form className="form" role="form" onSubmit={this.handleSubmit}>
+          <h2 style={{textAlign:"center", margin :"20px"}}>GOMYC<span style={{ color:"red" }}>O</span>DE</h2>
+        <h2 style={{textAlign:"center", margin :"20px" ,color:"blueviolet"}}>REACT JS Checkpoint</h2>
+        <form className="form" >
           <div className="form-group row">
             <label className="col-lg-3 col-form-label form-control-label">
               First name
             </label>
             <div className="col-lg-9">
               <input
+                id="firstName"
                 className="form-control"
                 type="text"
                 value={this.state.firstName}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </div>
           </div>
@@ -52,10 +61,11 @@ class Form extends Component {
             </label>
             <div className="col-lg-9">
               <input
+                id="lastName"
                 className="form-control"
                 type="text"
                 value={this.state.lastName}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </div>
           </div>
@@ -65,10 +75,11 @@ class Form extends Component {
             </label>
             <div className="col-lg-9">
               <input
+                id="email"
                 className="form-control"
                 type="email"
                 value={this.state.email}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </div>
           </div>
@@ -78,10 +89,11 @@ class Form extends Component {
             </label>
             <div className="col-lg-9">
               <input
+                id="company"
                 className="form-control"
                 type="text"
                 value={this.state.company}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </div>
           </div>
@@ -91,98 +103,21 @@ class Form extends Component {
             </label>
             <div className="col-lg-9">
               <input
+                id="webSite"
                 className="form-control"
                 type="url"
                 value={this.state.webSite}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </div>
           </div>
-          <div className="form-group row">
-            <label className="col-lg-3 col-form-label form-control-label">
-              Time Zone
-            </label>
-            <div className="col-lg-9">
-              <select
-                className="form-control"
-                id="user_time_zone"
-                size="0"
-                value={this.state.timeZone}
-                onChange={this.handleInputChange}
-              >
-                <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                <option value="Alaska">(GMT-09:00) Alaska</option>
-                <option value="Pacific Time (US &amp; Canada)">
-                  (GMT-08:00) Pacific Time (US &amp; Canada)
-                </option>
-                <option value="Arizona">(GMT-07:00) Arizona</option>
-                <option value="Mountain Time (US &amp; Canada)">
-                  (GMT-07:00) Mountain Time (US &amp; Canada)
-                </option>
-                <option
-                  value="Central Time (US &amp; Canada)"
-                >
-                  (GMT-06:00) Central Time (US &amp; Canada)
-                </option>
-                <option value="Eastern Time (US &amp; Canada)">
-                  (GMT-05:00) Eastern Time (US &amp; Canada)
-                </option>
-                <option value="Indiana (East)">
-                  (GMT-05:00) Indiana (East)
-                </option>
-              </select>
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-lg-3 col-form-label form-control-label">
-              Username
-            </label>
-            <div className="col-lg-9">
-              <input
-                className="form-control"
-                type="text"
-                value={this.state.userName}
-                onChange={this.handleInputChange}
-              />
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-lg-3 col-form-label form-control-label">
-              Password
-            </label>
-            <div className="col-lg-9">
-              <input
-                className="form-control"
-                type="password"
-                value={this.state.password}
-                onChange={this.handleInputChange}
-              />
-              <small className="form-text text-muted" id="passwordHelpBlock">
-                Your password must be 8-20 characters long, contain letters and
-                numbers, and must not contain spaces, special characters, or
-                emoji.
-              </small>
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-lg-3 col-form-label form-control-label">
-              Confirm
-            </label>
-            <div className="col-lg-9">
-              <input className="form-control" type="password" value="" />
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-lg-3 col-form-label form-control-label"></label>
-            <div className="col-lg-9">
-              {/* <input
-                className="btn btn-secondary"
-                type="reset"
-                value="Cancel"
-              /> */}
-                      <input type="submit" value="Submit" />
 
-            </div>
+
+          <div className="row" style={{ justifyContent:"center"}}>
+            <button id="btn" style={{ marginRight:"10px"}} className="btn btn-success" onClick={(e) => this.handleSubmit(e)}>Envoyer</button>
+            <button id="cancel" className="btn btn-danger" onClick={(e) => this.handleCancel(e)}>Cancel</button>
+
+            {/* <input type="submit" value="Envoyer" /> */}
           </div>
         </form>
       </div>

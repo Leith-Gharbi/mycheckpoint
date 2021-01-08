@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Formulaire from './components/formulaire';
 import reportWebVitals from './reportWebVitals';
 import Form from './components/form';
 
